@@ -5,8 +5,16 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import React,{ useState } from 'react';
 import { postImage } from "./api/upload";
+import { getArrangedData } from '../firebase/firebase';
 
-export default function Home() {
+export async function getServerSideProps() {
+  const allCafeData = await getArrangedData();
+  return{
+    props:{allCafeData}
+  }
+}
+
+export default function Home({allCafeData}) {
   const [image, setImage] = useState(null);
   const [createObject, setCreateObject] = useState(null);
   const uploadToClient = (event) => {
@@ -30,9 +38,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 >新着</h1>
-        <Cafecard />
-        <Cafecard />
+        <h1 >一覧</h1>
+        {/* {console.log(allCafeData)} */}
+        {console.log("aaaaa")}
+        {/* {console.log(allCafeData)} */}
+        {/* asyncでも表示されないし、無いとエラー出る→ブログ参考にしてみる */}
+        {/* {allCafeData.map((name)=>(
+           <Cafecard explanation={name} />
+        )
+        )} */}
+       
       </main>
       
       {/* <Link href={`/`}>登録</Link><br/> */}
@@ -45,7 +60,6 @@ export default function Home() {
     </Layout>
   )
 }
-
 
 //       <main>
 //         <h1 className={styles.title}>

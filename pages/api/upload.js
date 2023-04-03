@@ -5,9 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 //single image file upload
 export const postImage = async(image=null) => {
     let uploadResult = '';
-    console.log("aaaaaaa");
     if(image.name){
-        console.log("bbbbbb");
         const storageRef = ref(storage);
         const ext = image.name.split('.').pop();
         const hashName = Math.random().toString(36).slice(-8);

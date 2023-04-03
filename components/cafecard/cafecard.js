@@ -3,11 +3,11 @@ import cardstyle from '../../styles/cafecard.module.css'
 import CafeImage from './cafeImage'
 import CafeText from './cafeText'
 
-export default function cafecard(){
+export default function cafecard(props){
     return(
         <div className={cardstyle.cardsize}>
             <CafeImage />
-            <CafeText />
+            <CafeText explanation={props.explanation}/>
         </div>
     )
 }
