@@ -5,10 +5,10 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import React,{ useState } from 'react';
 import { postImage } from "./api/upload";
-import { getArrangedData } from '../firebase/firebase';
+import { getCafeData } from '../firebase/firebase';
 
 export async function getServerSideProps() {
-  const allCafeData = await getArrangedData();
+  const allCafeData = await getCafeData();
   return{
     props:{allCafeData}
   }
@@ -39,10 +39,7 @@ export default function Home({allCafeData}) {
       </Head>
       <main>
         <h1 >一覧</h1>
-        {/* {console.log(allCafeData)} */}
         {console.log("aaaaa")}
-        {/* {console.log(allCafeData)} */}
-        {/* asyncでも表示されないし、無いとエラー出る→ブログ参考にしてみる */}
         {/* {allCafeData.map((name)=>(
            <Cafecard explanation={name} />
         )
