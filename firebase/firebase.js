@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
-import { getFirestore, collection, getDocs,query,where,addDoc,onSnapshot,doc,getDoc} from 'firebase/firestore';
+import { getFirestore, collection, getDocs,query,where,addDoc,onSnapshot,docs,getDoc} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,24 +27,33 @@ const db =  getFirestore(app);
 // const storage=getStorage(app);
 
 export async function getCafeData() {//promiseオブジェクトを返す //1つのcafe
-  const docRef = doc(db,'cafelists','all');
-  const docSnap =await getDoc(docRef)
-  // const querySnapshot = await getDocs(col);//コメダ、スタバなどの名前=documents
-  const cafeData=docSnap.data();
-  console.log(cafeData)
-  // const cafesData = Object 
-  // const cafesData = Object.entries(cafeData)
-  // console.log(cafesData);
-  console.log("tamesi")
-  return cafeData
+  const cafesData=[];
+  const col = collection(db,'cafelists');
+  const querySnapshot = await getDocs(col)
+  querySnapshot.forEach(async (doc) =>{
+    const cafeName = doc.id
+    const subcol = collection(col,cafeName,'all')
+    const subquerySnapshot = await getDocs(subcol)
+    subquerySnapshot.forEach(async (subdoc) =>{
+      const cafeStore = subdoc.id 
+      const cafeData = subdoc.data()
+      console.log("表示されている")
+      cafesData.push({name:cafeName,store:cafeStore,...cafeData})
+      console.log("cafesData") 
+      console.log(cafesData) 
+    })
+    // console.log(cafes)
+  })
+  console.log("cafesの中身")
+  console.log(cafesData)
+  return cafesData
   // return postsArray
 }
 
 export async function getArrangedData(){
   const allCafeData = await getCafeData();
-  const cafesData = Object.entries(allCafeData)
-  console.log(cafesData)
-  return cafesData
+  // console.log(cafesData)
+  return allCafeData
 }
 
 export async function addCafeData(postData){
