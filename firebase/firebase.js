@@ -27,34 +27,38 @@ const db =  getFirestore(app);
 // const storage=getStorage(app);
 
 export async function getCafeData() {//promiseオブジェクトを返す //1つのcafe
-  const cafesData=[];
+  const cafesData= [];
   const col = collection(db,'cafelists');
-  const querySnapshot = await getDocs(col)
-  querySnapshot.forEach(async (doc) =>{
+    const querySnapshot = await getDocs(col)
+    console.log("動いているか")
+    await Promise.all(querySnapshot.docs.map(async (doc) => {
     const cafeName = doc.id
     const subcol = collection(col,cafeName,'all')
     const subquerySnapshot = await getDocs(subcol)
-    subquerySnapshot.forEach(async (subdoc) =>{
+    subquerySnapshot.forEach((subdoc) =>{
       const cafeStore = subdoc.id 
       const cafeData = subdoc.data()
-      console.log("表示されている")
-      cafesData.push({name:cafeName,store:cafeStore,...cafeData})
-      console.log("cafesData") 
-      console.log(cafesData) 
+      cafesData.push({name:cafeName,store:cafeStore,...cafeData}) 
     })
-    // console.log(cafes)
-  })
-  console.log("cafesの中身")
-  console.log(cafesData)
-  return cafesData
-  // return postsArray
-}
+        // console.log(cafesData)
+      })
+      )
+    
+    console.log(cafesData)
 
-export async function getArrangedData(){
-  const allCafeData = await getCafeData();
-  // console.log(cafesData)
-  return allCafeData
-}
+  return cafesData
+
+  }
+  
+  // return postsArray
+
+// export async function getArrangedData(){
+//   const allCafeData = await getCafeData();
+//   console.log("weeeeeeee")
+//   console.log(allCafeData)
+//   // console.log(cafesData)
+//   return allCafeData
+// }
 
 export async function addCafeData(postData){
   try {

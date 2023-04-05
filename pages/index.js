@@ -40,6 +40,7 @@ export default function Home({allCafeData}) {
       <main>
         <h1 >一覧</h1>
         {console.log("aaaaa")}
+        {console.log(allCafeData)}
         {/* {allCafeData.map((name)=>(
            <Cafecard explanation={name} />
         )
