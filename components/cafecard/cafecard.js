@@ -3,9 +3,12 @@ import cardstyle from '../../styles/cafecard.module.css'
 import CafeImage from './cafeImage'
 import CafeText from './cafeText'
 
-export default function cafecard(props){
-    const cafedata = props.cafedata
-    const imageName = cafedata.image
+export default function CafeCard(props){
+    const cafeData = props.cafeData
+    const cafeName = cafeData.name
+    const cafeStore = cafeData.store
+    const imageUrl = cafeData.imageurl
+
     // const name = cafedata.name
     // const store = cafedata.store
     // const explanation = cafedata.explanation
@@ -13,9 +16,9 @@ export default function cafecard(props){
     return(
         <div className={cardstyle.cardsize}>
             
-            <h3 className={cardstyle.cafename}>{cafedata.name}{cafedata.store}</h3>
-            <CafeImage imagepath={imageName}/>
-            <CafeText cafedata={cafedata}/>
+            <h3 className={cardstyle.cafename}>{cafeName}{cafeStore}</h3>
+            <CafeImage imageUrl={imageUrl}/>
+            <CafeText cafedata={cafeData}/>
         </div>
     )
 }

@@ -5,10 +5,17 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import React,{ useState } from 'react';
 import { postImage } from "./api/upload";
-import { getCafeData } from '../firebase/firebase';
+import { getCafeData , getImagePaths} from '../firebase/firebase';
 
 export async function getServerSideProps() {
-  const allCafeData = await getCafeData();
+  const preAllCafeData = await getCafeData();
+  const allCafeData = [];
+  await  Promise.all(preAllCafeData.map(async (cafeData) =>{
+    const url =await getImagePaths(cafeData)
+    allCafeData.push({...cafeData,imageurl:url})
+  } ))
+  console.log("できていない")
+  console.log(allCafeData)
   return{
     props:{allCafeData}
   }
@@ -41,10 +48,10 @@ export default function Home({allCafeData}) {
         <h2 className={styles.topmargin}>カフェ一覧</h2>
         {console.log("aaaaa")}
         {console.log(allCafeData)}
-        {allCafeData.map((cafedata)=>(
+        {allCafeData.map((cafeData)=>(
         
           <>
-          <Cafecard cafedata={cafedata} />
+          <Cafecard cafeData={cafeData} />
           <h3>
             {/* {cafedata.name}
             {cafedata.store}

@@ -1,6 +1,6 @@
 import cafecard from '../../styles/cafecard.module.css'
 
-export default function cafeText(props){
+export default function CafeText(props){
     const cafedata = props.cafedata
     return(
         <>

@@ -72,13 +72,13 @@ export async function addCafeData(postData){
   }
 }
 
-export async function getImagePaths(/*props*/){
+export async function getImagePaths(cafeData){
 const storage = getStorage();
 const imagesRef = ref(storage, 'images' );
-// const fileName = props.fileName
-const fileName = "cafesample.jpg"
+const fileName = cafeData.image
+// const fileName = "cafesample.jpg"
 const spaceRef =  ref(imagesRef, fileName);
 const url=await getDownloadURL(spaceRef)
 console.log(url)
-// return url
+return url
 }
