@@ -38,13 +38,24 @@ export default function Home({allCafeData}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 >一覧</h1>
+        <h2 className={styles.topmargin}>カフェ一覧</h2>
         {console.log("aaaaa")}
         {console.log(allCafeData)}
-        {/* {allCafeData.map((name)=>(
-           <Cafecard explanation={name} />
+        {allCafeData.map((cafedata)=>(
+        
+          <>
+          <Cafecard cafedata={cafedata} />
+          <h3>
+            {/* {cafedata.name}
+            {cafedata.store}
+            {cafedata.price}
+            {cafedata.atmosphere}
+            {cafedata.explanation} */}
+          </h3>
+          
+          </>
         )
-        )} */}
+        )}
        
       </main>
       

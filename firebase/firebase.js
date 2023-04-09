@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getStorage } from "firebase/storage";
+import { getStorage , ref,getDownloadURL} from "firebase/storage";
 import { getFirestore, collection, getDocs,query,where,addDoc,onSnapshot,docs,getDoc} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,7 +15,8 @@ const firebaseConfig = {
   storageBucket: "cafelog24.appspot.com",
   messagingSenderId: "906316060352",
   appId: "1:906316060352:web:b0acb40a5c6c875df17f25",
-  measurementId: "G-WSC5VN3QY5"
+  measurementId: "G-WSC5VN3QY5",
+  storageBucket:"cafelog24.appspot.com"
 };
 
 
@@ -43,9 +44,7 @@ export async function getCafeData() {//promiseオブジェクトを返す //1つ
         // console.log(cafesData)
       })
       )
-    
-    console.log(cafesData)
-
+    // console.log(cafesData)
   return cafesData
 
   }
@@ -71,4 +70,15 @@ export async function addCafeData(postData){
   } catch (e) {
     console.error("Error adding document: ", e);
   }
+}
+
+export async function getImagePaths(/*props*/){
+const storage = getStorage();
+const imagesRef = ref(storage, 'images' );
+// const fileName = props.fileName
+const fileName = "cafesample.jpg"
+const spaceRef =  ref(imagesRef, fileName);
+const url=await getDownloadURL(spaceRef)
+console.log(url)
+// return url
 }
