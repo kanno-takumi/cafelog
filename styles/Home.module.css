@@ -5,6 +5,7 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  margin:20px 0;
 }
 
 .title a {
@@ -88,4 +89,9 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+.topmargin {
+  margin:0 0 30px 10px;
+  
 }
