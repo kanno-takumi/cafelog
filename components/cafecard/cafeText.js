@@ -5,9 +5,9 @@ export default function CafeText(props){
     return(
         <>
         <div className={cafecard.textboxsize}>
-        <div>{cafedata.price}</div>
-        <div>{cafedata.atmosphere}</div>
-        <div>{cafedata.explanation}</div>
+        <div>価格帯：{cafedata.price}</div>
+        <div>雰囲気：{cafedata.atmosphere}</div>
+        <div>説明：{cafedata.explanation}</div>
         </div>
         </>
     )

@@ -8,11 +8,7 @@ export default function CafeCard(props){
     const cafeName = cafeData.name
     const cafeStore = cafeData.store
     const imageUrl = cafeData.imageurl
-
-    // const name = cafedata.name
-    // const store = cafedata.store
-    // const explanation = cafedata.explanation
-    // const atmosphere = cafedata.atmosphere
+    
     return(
         <div className={cardstyle.cardsize}>
             
