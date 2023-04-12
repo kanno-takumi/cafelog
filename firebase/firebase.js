@@ -30,13 +30,20 @@ const db =  getFirestore(app);
 export async function getCafeData() {//promiseオブジェクトを返す //1つのcafe
   const cafesData= [];
   const col = collection(db,'cafelists');
+  // const collection2 = collection(col,"starbucks","all")
+  // const data = await getDocs(collection2)
+  // data.docs.map(doc => {
+  //   console.log(doc.id)
+  // })
+
     const querySnapshot = await getDocs(col)
-    // console.log("動いているか")
+    console.log("動いているか")
     await Promise.all(querySnapshot.docs.map(async (doc) => {
     const cafeName = doc.id
+    console.log(cafeName)
     const subcol = collection(col,cafeName,'all')
     const subquerySnapshot = await getDocs(subcol)
-    subquerySnapshot.forEach((subdoc) =>{
+    subquerySnapshot.docs.map((subdoc) =>{
       const cafeStore = subdoc.id 
       const cafeData = subdoc.data()
       cafesData.push({name:cafeName,store:cafeStore,...cafeData}) 
@@ -57,14 +64,17 @@ export async function addCafeData(cafeData){
   console.log(name)
   console.log(store)
   try {
-    const ref =collection(db,"cafelists",name,"all")
-    setDoc(doc(ref,store),
-    {
+    const colref = collection(db,"cafelists")
+    setDoc(doc(colref,name),{
       name:name,
+    })
+    const ref =collection(db,"cafelists",name,"all")
+    setDoc(doc(ref,store),{
       store:store,
       price:cafeData.price,
       atmosphere:cafeData.atmosphere,
       explanation:cafeData.explanation,
+      image:cafeData.image,
     }
     )
     // const subcol= collection(col,name,"all");

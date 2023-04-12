@@ -17,6 +17,7 @@ export default function modalContent(props){
         const file = event.target.files[0];
     //    console.log("動いている")
         setImage(file);
+        // console.log(image)
         // imageUpload(file);
         setCreateObject(URL.createObjectURL(file));
     //     console.log(createObject)
@@ -30,7 +31,7 @@ export default function modalContent(props){
         console.log(data);
         props.propsopenModal(false);
         imageUpload(image);//写真を追加する
-        await addCafeData(data);//データを追加する
+        await addCafeData({...data,image:image.name});//データを追加する
         await getCafeData();
         // router.reload(); 
         reset();
