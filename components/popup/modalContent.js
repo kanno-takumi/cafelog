@@ -33,7 +33,7 @@ export default function modalContent(props){
         imageUpload(image);//写真を追加する
         await addCafeData({...data,image:image.name});//データを追加する
         await getCafeData();
-        // router.reload(); 
+        router.reload(); 
         reset();
     }
     
