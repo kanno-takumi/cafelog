@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage , ref,getDownloadURL} from "firebase/storage";
-import { getFirestore, collection, getDocs,query,where,addDoc,onSnapshot,docs,getDoc} from 'firebase/firestore';
+import { getFirestore, collection, getDocs,query,where,addDoc,onSnapshot,docs,getDoc,setDoc,doc} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,13 +30,20 @@ const db =  getFirestore(app);
 export async function getCafeData() {//promiseオブジェクトを返す //1つのcafe
   const cafesData= [];
   const col = collection(db,'cafelists');
+  // const collection2 = collection(col,"starbucks","all")
+  // const data = await getDocs(collection2)
+  // data.docs.map(doc => {
+  //   console.log(doc.id)
+  // })
+
     const querySnapshot = await getDocs(col)
     console.log("動いているか")
     await Promise.all(querySnapshot.docs.map(async (doc) => {
     const cafeName = doc.id
+    console.log(cafeName)
     const subcol = collection(col,cafeName,'all')
     const subquerySnapshot = await getDocs(subcol)
-    subquerySnapshot.forEach((subdoc) =>{
+    subquerySnapshot.docs.map((subdoc) =>{
       const cafeStore = subdoc.id 
       const cafeData = subdoc.data()
       cafesData.push({name:cafeName,store:cafeStore,...cafeData}) 
@@ -49,24 +56,47 @@ export async function getCafeData() {//promiseオブジェクトを返す //1つ
 
   }
   
-  // return postsArray
-
-// export async function getArrangedData(){
-//   const allCafeData = await getCafeData();
-//   console.log("weeeeeeee")
-//   console.log(allCafeData)
-//   // console.log(cafesData)
-//   return allCafeData
-// }
-
-export async function addCafeData(postData){
+export async function addCafeData(cafeData){
+  const name = cafeData.name;
+  const store = cafeData.store;
+  console.log("確認済み")
+  console.log(cafeData)
+  console.log(name)
+  console.log(store)
   try {
-    const docRef = await addDoc(collection(db, "posts"), {
-      content:postData.content,
-      date: postData.date,
-      title: postData.title
-    });
-    console.log("Document written with ID: ", docRef.id);
+    const colref = collection(db,"cafelists")
+    setDoc(doc(colref,name),{
+      name:name,
+    })
+    const ref =collection(db,"cafelists",name,"all")
+    setDoc(doc(ref,store),{
+      store:store,
+      price:cafeData.price,
+      atmosphere:cafeData.atmosphere,
+      explanation:cafeData.explanation,
+      image:cafeData.image,
+    }
+    )
+    // const subcol= collection(col,name,"all");
+    // await subcol()
+    // const secondCol =collection(doc,"all");
+  //   const secondDoc = await setDoc((secondCol,store),
+  //    { 
+  //     content:postData.content,
+  //     data:postData.date,
+  //     title:postData.title,
+  // }
+  //   );
+  //   secondDoc();
+
+    //    {
+    //   atmosphere:cafeData.atmosphere,
+    //   explanation:cafeData.explanation,
+    //   image:cafeData.image,
+    //   price:cafeData.price
+    // });
+    // console.log("Document written with ID: ", docRef.id);
+    // docRef()
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -79,6 +109,6 @@ const fileName = cafeData.image
 // const fileName = "cafesample.jpg"
 const spaceRef =  ref(imagesRef, fileName);
 const url=await getDownloadURL(spaceRef)
-console.log(url)
+// console.log(url)
 return url
 }

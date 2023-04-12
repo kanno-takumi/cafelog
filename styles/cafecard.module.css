@@ -1,9 +1,10 @@
 .cardsize{
     width:300px;
-    height:500px;
+    height:400px;
     border:solid 1px gray;
-    margin:10px;
-    padding:10px;
+    margin:30px 0;
+    color:gray;
+    /* padding:0; */
 
 }
 
@@ -16,12 +17,20 @@
 }
 
 .textboxsize{
-    width:280px;
+    width:240px;
     height:70px;
     /* background-color:green; */
     margin:20px 30px;
+    font-size:0.7rem;
 }
 
 .cafename{
     margin:20px 30px;
+    width:240px;
+    /* 真ん中にしたい */
 }
+
+.ex { 
+    max-width: 10px;
+    max-height: 10px;
+  }

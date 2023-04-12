@@ -25,7 +25,7 @@ export default function Layout({children}){
                 
             <footer className={styles.footer}>
                
-                <a href="/" >footer</a>
+                <a href="https://takumi-nextjs-blog.vercel.app/" >blogへ移動</a>
             </footer>
         </div>
     )
