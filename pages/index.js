@@ -21,15 +21,14 @@ export async function getServerSideProps() {
 }
 
 export default function Home({allCafeData}) {
-
+  const title = "カフェ一覧"
   return (
-    <Layout>
+    <Layout title={title}>
       <Head>
         <title></title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h2 className={styles.toptitle}>カフェ一覧</h2>
         {/* {console.log("aaaaa")} */}
         {/* {console.log(allCafeData)} */}
         {allCafeData.map((cafeData)=>(
