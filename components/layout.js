@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 
 const siteTitle='Cafelog'
 
-export default function Layout({children}){
+export default function Layout({children,title}){
     return (
         <div className={styles.container}>{/**layout.module.css */}
             <Head>
@@ -21,7 +21,11 @@ export default function Layout({children}){
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" /> 
             </Head>
-                <main>{children}</main>
+
+                <main>
+                <h3 className={styles.toptitle}>{title}</h3>
+                    {children}
+                    </main>
                 
             <footer className={styles.footer}>
                

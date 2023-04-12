@@ -8,10 +8,9 @@ export default function CafeCard(props){
     const cafeName = cafeData.name
     const cafeStore = cafeData.store
     const imageUrl = cafeData.imageurl
-    
+
     return(
         <div className={cardstyle.cardsize}>
-            
             <h3 className={cardstyle.cafename}>{cafeName}{cafeStore}</h3>
             <CafeImage imageUrl={imageUrl}/>
             <CafeText cafedata={cafeData}/>

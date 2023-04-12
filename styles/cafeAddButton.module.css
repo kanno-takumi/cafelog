@@ -1,18 +1,14 @@
 
-/* 本当は真ん中にしたい */
-.btnset{
-    margin:2rem 0 2rem 0;
-    width:140px;
+
+
+.btnmod{
     justify-content: center;
 	align-items: center;
+    /* margin:20px  auto; */
+    /* display:flex; */
+    display:flex;
+    background-color: #6e8496;
 }
-
-
-/* .btnmod{
-    justify-content: center;
-	align-items: center;
-    width:200px;
-} */
 
 .btnmod a{
     /* -webkit-box-sizing: border-box; */
@@ -37,7 +33,6 @@
     -o-transition: all 0.2s cubic-bezier(0.000, 0.000, 0.580, 1.000);
     -ms-transition: all 0.2s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
     transition: all 0.2s cubic-bezier(0.000, 0.000, 0.580, 1.000); */
-    
 }
 .btnmod:hover,
 .btnmod:focus,
@@ -50,16 +45,18 @@ a.btnmod:focus{
     background: rgba(0,0,0, .7);
     text-decoration: none;
     outline: none;
+    
 }
 .btnmod:active{
     cursor: pointer !important;
+    
 }
 
 .btnmod.btnlarge{
     padding: 12px 10px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-size: 18px;
+    font-size: 18px;
+    justify-content: center;
+	align-items: center;
 } 
 
 /* ==============================
@@ -67,8 +64,9 @@ a.btnmod:focus{
    ============================== */
 .btnmod.btnborder{
     color: gray;
-    border: 2px solid gray;
+    border:1.5px solid gray;
     background: transparent;
+
 }
 .btnmod.btnborder:hover,
 .btnmod.btnborder:focus{

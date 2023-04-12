@@ -8,26 +8,28 @@
 
 }
 
-.imageboxsize{
+.imagebox{
  width:210px;
  height:210px;
- border:solid 1px gray;
+ /* border:solid 1px gray; */
  /* background-color:khaki; */
- margin:0 auto;
+ margin:0 auto; 
+}
+.imageradius{
+border-radius: 8px ; 
 }
 
 .textboxsize{
-    width:240px;
+    width:210px;
     height:70px;
     /* background-color:green; */
-    margin:20px 30px;
+    margin:20px 45px;
     font-size:0.7rem;
 }
 
 .cafename{
     margin:20px 30px;
-    width:240px;
-    /* 真ん中にしたい */
+    text-align:center;
 }
 
 .ex { 

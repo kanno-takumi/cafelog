@@ -28,10 +28,21 @@ export default function modalContent(props){
     const router = useRouter()
     const {register,handleSubmit,reset}=useForm();
     const uploadToServer = async (data) => {
-        console.log(data);
         props.propsopenModal(false);
         imageUpload(image);//写真を追加する
-        await addCafeData({...data,image:image.name});//データを追加する
+        console.log(data);
+        data = {
+            name:data.name,
+            store:data.store,
+            atmosphere:data.atmosphere,
+            explanation:data.explanation,
+            price:Number(data.price),
+            store:data.store,
+            image:image.name,
+        }
+        console.log(data)
+        
+        await addCafeData(data);//データを追加する
         await getCafeData();
         router.reload(); 
         reset();

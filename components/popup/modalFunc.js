@@ -11,12 +11,10 @@ export default function Button(){
     // }
     return(
         <>
-            <div className={cafeButton.btnset}>
                 <div className={`  ${cafeButton.btnmod} ${cafeButton.btnborder} ${cafeButton.btnlarge} ${cafeButton.btnround}`}
                 onClick={()=>openModal(true)}>
                     カフェを追加
                 </div>
-            </div>
 
             {modal && (
             <div>
