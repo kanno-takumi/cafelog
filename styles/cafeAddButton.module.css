@@ -8,6 +8,7 @@
     /* display:flex; */
     display:flex;
     background-color: #6e8496;
+    border-radius: 5px;
 }
 
 .btnmod a{
@@ -64,13 +65,13 @@ a.btnmod:focus{
    ============================== */
 .btnmod.btnborder{
     color: gray;
-    border:1.5px solid gray;
+    border:1px solid gray;
     background: transparent;
 
 }
 .btnmod.btnborder:hover,
 .btnmod.btnborder:focus{
-    color: gray;
+    color: white;
     border-color: gray;
-    background: beige;
+    background: gray;
 }
