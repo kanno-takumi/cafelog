@@ -70,7 +70,7 @@ a.btnmod:focus{
 }
 .btnmod.btnborder:hover,
 .btnmod.btnborder:focus{
-    color: #fff;
-    border-color: transparent;
-    background: #6e8496;
+    color: gray;
+    border-color: gray;
+    background: beige;
 }
